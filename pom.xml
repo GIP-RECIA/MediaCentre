@@ -40,7 +40,7 @@
 		<project.build.source>1.7</project.build.source>
 		<project.build.target>1.8</project.build.target>
 
-		<apache.http.version>4.5.6</apache.http.version>
+		<apache.http.version>4.5.10</apache.http.version>
 		<spring.version>4.3.22.RELEASE</spring.version>
 		<logback.version>1.2.3</logback.version>
 		<lombok.version>1.18.4</lombok.version>
