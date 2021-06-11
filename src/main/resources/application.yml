@@ -1,0 +1,46 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /mediacentre-api
+  error:
+    whitelabel.enabled: true
+    include-binding-errors: always
+    include-exception: true
+    include-message: always
+    include-stacktrace: always
+
+#logging:
+#  level:
+#    web: DEBUG
+#    fr: DEBUG
+
+spring:
+  cache.jcache.config: classpath:ehcache.xml
+  config.import:
+    - classpath:private.yml # Variables privées à ne pas diffuser.
+    - classpath:configuration.properties
+
+security-configuration:
+  soffit:
+    jwt.signatureKey: '=== Signature Key ===' # Variable privée surchargée dans private.yml.
+  cors:
+    enable: true
+    allow-credentials: true
+    allowed-origins: > # IP = PC de Anaël via VPN.
+      http://localhost:8080,
+      http://192.168.36.10:8080,
+      https://*.giprecia.net
+    exposed-headers: >
+      x-auth-token,
+      x-requested-with,
+      x-xsrf-token
+    allowed-headers: >
+      content-type,
+      authorization,
+      x-com-persist,
+      X-Auth-Token,
+      x-auth-token,
+      x-requested-with,
+      x-xsrf-token
+    allowed-methods: > # Majuscules.
+      GET
