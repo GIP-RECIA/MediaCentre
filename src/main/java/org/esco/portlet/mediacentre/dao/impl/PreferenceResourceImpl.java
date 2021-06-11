@@ -89,7 +89,7 @@ public class PreferenceResourceImpl implements IPreferenceResource {
                     log.debug("Favorite {} was added to PortletPreferences {} that were stored", favorite, favorites);
                 }
             } catch (ValidatorException | IOException e) {
-                log.error("PortletPreferences {} were not store", favorites, e.getMessage());
+                log.error("PortletPreferences {} were not store {}", favorites, e.getMessage());
             }
         }
     }
