@@ -16,10 +16,9 @@
 package org.esco.portlet.mediacentre.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import javax.portlet.PortletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
@@ -31,7 +30,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import lombok.NonNull;
-import lombok.Setter;
 
 /**
  * Created by jgribonvald on 06/06/17.
@@ -46,7 +44,6 @@ public class MockPreferenceResourceImpl implements IPreferenceResource {
 	
 	@NonNull
     @Value("${userInfo.mediacentre.favorites}")
-    @Setter
     private String mediacentreFavorites;
 
 	public MockPreferenceResourceImpl() {
@@ -54,7 +51,7 @@ public class MockPreferenceResourceImpl implements IPreferenceResource {
 	}
 	
 	@Override
-    public List<String> getUserFavorites(@NotNull final PortletRequest portletRequest) {
+    public List<String> getUserFavorites(@NotNull final HttpServletRequest request) {
 		Assert.hasText(this.mediacentreFavorites, "No Favorite Codes user info key configured !");
 		
 		//final String[] favorite = System.getProperty("mediacentre.userFavorite", "http://n2t.net/ark:/99999/RSF000001").split(SPLIT_SEP);
@@ -63,18 +60,18 @@ public class MockPreferenceResourceImpl implements IPreferenceResource {
     }
 
     @Override
-    public void setUserFavorites(@NotNull final PortletRequest portletRequest, @NotNull final List<String> favorites) {
+    public void setUserFavorites(@NotNull final HttpServletRequest request, @NotNull final List<String> favorites) {
     }
 
 
 	@Override
-    public void addToUserFavorites(@NotNull final PortletRequest portletRequest, @NotNull final String favorite) {
+    public void addToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) {
     	favoris.add(new String(favorite));
     	log.debug("addToUserFavorites" + favoris);
     }
 
     @Override
-    public void removeToUserFavorites(@NotNull final PortletRequest portletRequest, @NotNull final String favorite) {
+    public void removeToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) {
     	int i = favoris.indexOf(favorite);
     	if (i>=0) {
     		favoris.remove(i);

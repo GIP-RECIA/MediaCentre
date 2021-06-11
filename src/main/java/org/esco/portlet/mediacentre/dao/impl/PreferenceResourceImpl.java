@@ -15,22 +15,21 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.portlet.PortletPreferences;
-import javax.portlet.PortletRequest;
-import javax.portlet.ReadOnlyException;
-import javax.portlet.ValidatorException;
-import javax.validation.constraints.NotNull;
-
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+
+import javax.portlet.PortletPreferences;
+import javax.portlet.ReadOnlyException;
+import javax.portlet.ValidatorException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by jgribonvald on 06/06/17.
@@ -44,8 +43,8 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public List<String> getUserFavorites(@NotNull final PortletRequest portletRequest) {
-        final List<String> favorites = Arrays.asList(portletRequest.getPreferences().getValues(FAVORITES_PREF, new String[0]));
+    public List<String> getUserFavorites(@NotNull final HttpServletRequest request) {
+        final List<String> favorites = Arrays.asList(request.getPreferences().getValues(FAVORITES_PREF, new String[0]));
 
         if (log.isDebugEnabled()) {
             log.debug("Retrieved Favorites are {}", favorites);
@@ -55,8 +54,8 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     }
 
     @Override
-    public void setUserFavorites(@NotNull final PortletRequest portletRequest, @NotNull final List<String> favorites) throws ReadOnlyException {
-        PortletPreferences pp = portletRequest.getPreferences();
+    public void setUserFavorites(@NotNull final HttpServletRequest request, @NotNull final List<String> favorites) throws ReadOnlyException {
+        PortletPreferences pp = request.getPreferences();
 
         if (favorites.isEmpty()) {
             pp.reset(FAVORITES_PREF);
@@ -75,8 +74,8 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     }
 
     @Override
-    public void addToUserFavorites(@NotNull final PortletRequest portletRequest, @NotNull final String favorite) throws ReadOnlyException  {
-        PortletPreferences pp = portletRequest.getPreferences();
+    public void addToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException  {
+        PortletPreferences pp = request.getPreferences();
 
         if (!favorite.isEmpty()) {
             List<String> favorites = new ArrayList<String>(Arrays.asList(pp.getValues(FAVORITES_PREF, new String[0])));
@@ -96,8 +95,8 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     }
 
     @Override
-    public void removeToUserFavorites(@NotNull final PortletRequest portletRequest, @NotNull final String favorite) throws ReadOnlyException  {
-        PortletPreferences pp = portletRequest.getPreferences();
+    public void removeToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException  {
+        PortletPreferences pp = request.getPreferences();
 
         List<String> favorites = new ArrayList<String>(Arrays.asList(pp.getValues(FAVORITES_PREF, new String[0])));
         favorites.remove(favorite);

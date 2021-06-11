@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.portlet.PortletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
 import lombok.NonNull;
@@ -43,27 +43,22 @@ public class MockUserResourceImpl implements IUserResource, InitializingBean {
 
     @NonNull
     @Value("${userInfo.key.uid}")
-    /*@Setter*/
     private String uidInfoKey;
 
     @NonNull
     @Value("${userInfo.key.etabIds}")
-    /*@Setter*/
     private String etabCodesInfoKey;
     
     @NonNull
     @Value("${userInfo.key.currentEtabId}")
-   /* @Setter*/
     private String currentEtabCodeInfoKey;
     
     @NonNull
     @Value("${userInfo.key.profils}")
-    /*@Setter*/
     private String profilsInfoKey;
 
     @NonNull
     @Value("${userInfo.key.groups}")
-    /*@Setter*/
     private String userGroupsInfokey;
 
     private final Map<String, List<String>> userInfoMap = new HashMap<>();
@@ -76,7 +71,7 @@ public class MockUserResourceImpl implements IUserResource, InitializingBean {
      * @return the user info attribute values
      */
     @SuppressWarnings("unchecked")
-    public List<String> getUserInfo(@NotNull final PortletRequest request, @NotNull final String attributeName) {
+    public List<String> getUserInfo(@NotNull final HttpServletRequest request, @NotNull final String attributeName) {
         if (attributeName.isEmpty()) return Collections.EMPTY_LIST;
 
         final Map<String, List<String>> userInfo = userInfoMap;
@@ -100,7 +95,7 @@ public class MockUserResourceImpl implements IUserResource, InitializingBean {
         return attributeValues;
     }
     
-    public Map<String, List<String>> getUserInfoMap(final PortletRequest request) {
+    public Map<String, List<String>> getUserInfoMap(final HttpServletRequest request) {
         return userInfoMap;
     }
 

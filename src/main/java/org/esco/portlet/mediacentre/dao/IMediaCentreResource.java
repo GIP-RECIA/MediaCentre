@@ -15,17 +15,16 @@
  */
 package org.esco.portlet.mediacentre.dao;
 
+import org.esco.portlet.mediacentre.model.ressource.Ressource;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
-
-import javax.portlet.PortletRequest;
-
-import org.esco.portlet.mediacentre.model.ressource.Ressource;
 
 /**
  * Created by jgribonvald on 13/09/16.
  */
 public interface IMediaCentreResource {
 
-	List<Ressource> retrieveListRessource(final String mediaCentreUrl, PortletRequest request, Map<String, List<String>> userInfos) ;
+	List<Ressource> retrieveListRessource(final String mediaCentreUrl, HttpServletRequest request, Map<String, List<String>> userInfos) ;
 }

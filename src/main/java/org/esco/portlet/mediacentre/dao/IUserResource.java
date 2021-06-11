@@ -15,15 +15,14 @@
  */
 package org.esco.portlet.mediacentre.dao;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
 
-import javax.portlet.PortletRequest;
-import javax.validation.constraints.NotNull;
-
 public interface IUserResource {
 
-	List<String> getUserInfo(@NotNull final PortletRequest request, @NotNull final String attributeName);
+	List<String> getUserInfo(@NotNull final HttpServletRequest request, @NotNull final String attributeName);
 
-	Map<String, List<String>> getUserInfoMap(@NotNull final PortletRequest request);
+	Map<String, List<String>> getUserInfoMap(@NotNull final HttpServletRequest request);
 }

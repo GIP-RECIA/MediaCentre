@@ -15,27 +15,21 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.portlet.PortletRequest;
-
+import com.google.common.collect.Lists;
 import org.esco.portlet.mediacentre.dao.IMediaCentreResource;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.google.common.collect.Lists;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jgribonvald on 13/09/16.
@@ -47,11 +41,11 @@ public class MediaCentreResourceJacksonImpl implements IMediaCentreResource {
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<Ressource> retrieveListRessource(String mediaUrl, PortletRequest request, Map<String, List<String>> userInfos) {
+    public List<Ressource> retrieveListRessource(String mediaUrl, HttpServletRequest request, Map<String, List<String>> userInfos) {
         return this.getServiceMediaCentre(mediaUrl, request, userInfos);
     }
 
-    private List<Ressource> getServiceMediaCentre(String url, PortletRequest request, Map<String, List<String>> userInfos) {
+    private List<Ressource> getServiceMediaCentre(String url, HttpServletRequest request, Map<String, List<String>> userInfos) {
         if (log.isDebugEnabled()) {
             log.debug("Requesting mediacentre on URL {}", url );
         }

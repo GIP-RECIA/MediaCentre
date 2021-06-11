@@ -15,12 +15,12 @@
  */
 package org.esco.portlet.mediacentre.service.bean;
 
-import javax.portlet.PortletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by jgribonvald on 15/09/16.
  */
 public interface IMediaUrlBuilder {
 
-    String transform(final PortletRequest request, final String url);
+    String transform(final HttpServletRequest request, final String url);
 }

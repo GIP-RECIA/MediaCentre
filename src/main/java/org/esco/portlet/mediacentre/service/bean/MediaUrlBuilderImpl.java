@@ -15,19 +15,18 @@
  */
 package org.esco.portlet.mediacentre.service.bean;
 
-import javax.portlet.PortletRequest;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.esco.portlet.mediacentre.dao.IUserResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by jgribonvald on 15/09/16.
@@ -43,7 +42,7 @@ public class MediaUrlBuilderImpl implements IMediaUrlBuilder {
     private IUserResource userResource;
 
     @Override
-    public String transform(final PortletRequest request, final String url) {
+    public String transform(final HttpServletRequest request, final String url) {
         String rewroteUrl = url;
         if (log.isDebugEnabled()) {
             log.debug("Url in entry is '{}'",rewroteUrl);

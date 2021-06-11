@@ -15,13 +15,10 @@
  */
 package org.esco.portlet.mediacentre.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.portlet.PortletRequest;
-import javax.portlet.ReadOnlyException;
-import javax.validation.constraints.NotNull;
-
+import com.google.common.collect.Lists;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
 import org.apache.commons.lang.StringUtils;
 import org.esco.portlet.mediacentre.dao.IMediaCentreResource;
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
@@ -34,11 +31,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Lists;
-
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import javax.portlet.ReadOnlyException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jgribonvald on 06/06/17.
@@ -95,13 +92,13 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     private IMediaCentreResource mediaCentreResource;    
     
     @Override
-    public List<String> getUserLinkedEtablissements(@NotNull PortletRequest portletRequest) {
-        return userResource.getUserInfo(portletRequest, etabCodesInfoKey);
+    public List<String> getUserLinkedEtablissements(@NotNull HttpServletRequest request) {
+        return userResource.getUserInfo(request, etabCodesInfoKey);
     }
 
     @Override
-    public List<String> getUserCurrentEtablissement(@NotNull PortletRequest portletRequest) {
-        List<String> userInfos = userResource.getUserInfo(portletRequest, currentEtabCodeInfoKey);
+    public List<String> getUserCurrentEtablissement(@NotNull HttpServletRequest request) {
+        List<String> userInfos = userResource.getUserInfo(request, currentEtabCodeInfoKey);
         /**if (userInfos.size() > 1) {
             // should not happen
             log.warn("User info has more than one value, the service will return only the first one !");
@@ -111,47 +108,47 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     }
 
     @Override
-    public List<String> getUserGroups(@NotNull PortletRequest portletRequest) {
-        return userResource.getUserInfo(portletRequest, userGroupsInfokey);
+    public List<String> getUserGroups(@NotNull HttpServletRequest request) {
+        return userResource.getUserInfo(request, userGroupsInfokey);
     }
 
     @Override
-    public String getCurrentUserId(@NotNull PortletRequest portletRequest) {
-        return portletRequest.getRemoteUser();
+    public String getCurrentUserId(@NotNull HttpServletRequest request) {
+        return request.getRemoteUser();
     }
 
     @Override
-    public List<String> getUserFavorites(@NotNull PortletRequest portletRequest) {
-        return preferenceResource.getUserFavorites(portletRequest);
+    public List<String> getUserFavorites(@NotNull HttpServletRequest request) {
+        return preferenceResource.getUserFavorites(request);
     }
 
     @Override
-    public List<String> getUserInfoOnAttribute(@NotNull PortletRequest portletRequest, @NotNull String attributeKey) {
+    public List<String> getUserInfoOnAttribute(@NotNull HttpServletRequest request, @NotNull String attributeKey) {
         if (!attributeKey.isEmpty()) {
-            return userResource.getUserInfo(portletRequest,attributeKey);
+            return userResource.getUserInfo(request,attributeKey);
         }
         return Lists.newArrayList();
     }
 
     @Override
-    public Map<String, List<String>> getUserInfos(@NotNull PortletRequest portletRequest) {
-        return userResource.getUserInfoMap(portletRequest);
+    public Map<String, List<String>> getUserInfos(@NotNull HttpServletRequest request) {
+        return userResource.getUserInfoMap(request);
     }
 
     @Override
-    public void setAndSaveUserFavorites(@NotNull PortletRequest portletRequest, @NotNull List<String> favorites) {
+    public void setAndSaveUserFavorites(@NotNull HttpServletRequest request, @NotNull List<String> favorites) {
         try {
-            preferenceResource.setUserFavorites(portletRequest,favorites);
+            preferenceResource.setUserFavorites(request,favorites);
         } catch (ReadOnlyException e) {
             log.error("Can't modify Favorites, please watch the portlet definition");
         }
     }
 
     @Override
-    public void addToUserFavorites(@NotNull PortletRequest portletRequest, @NotNull String favorite) {
+    public void addToUserFavorites(@NotNull HttpServletRequest request, @NotNull String favorite) {
         try {
             if (!favorite.isEmpty()) {
-                preferenceResource.addToUserFavorites(portletRequest, favorite);
+                preferenceResource.addToUserFavorites(request, favorite);
             } else {
                 log.warn("Tried to add an empty string passed as favorite !");
             }
@@ -161,10 +158,10 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     }
 
     @Override
-    public void removeToUserFavorites(@NotNull PortletRequest portletRequest, @NotNull String favorite) {
+    public void removeToUserFavorites(@NotNull HttpServletRequest request, @NotNull String favorite) {
         try {
             if (!favorite.isEmpty()) {
-                preferenceResource.removeToUserFavorites(portletRequest, favorite);
+                preferenceResource.removeToUserFavorites(request, favorite);
             } else {
                 log.warn("Tried to remove an empty string passed as favorite !");
             }
@@ -195,7 +192,7 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     }
 
     @Override
-    public List<Ressource> retrieveListRessource(final PortletRequest request) {
+    public List<Ressource> retrieveListRessource(final HttpServletRequest request) {
         
         if (log.isDebugEnabled()) {
             log.debug("Preference mediacentre url is {}", urlRessources);
