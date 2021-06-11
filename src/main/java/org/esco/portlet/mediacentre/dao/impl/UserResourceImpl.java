@@ -15,7 +15,6 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
-import com.google.common.collect.Maps;
 import org.esco.portlet.mediacentre.dao.IUserResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +24,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -89,7 +89,7 @@ public class UserResourceImpl implements IUserResource{
             //throw new IllegalStateException("Unable to retrieve Portal UserInfo !");
         }
 
-        return Maps.newLinkedHashMap();
+        return new LinkedHashMap<>();
 
     }
 

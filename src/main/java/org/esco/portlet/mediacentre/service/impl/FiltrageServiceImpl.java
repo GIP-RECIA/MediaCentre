@@ -15,16 +15,7 @@
  */
 package org.esco.portlet.mediacentre.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Sets;
 import org.esco.portlet.mediacentre.model.IFilterUserRight;
 import org.esco.portlet.mediacentre.model.affectation.GestionAffectation;
 import org.esco.portlet.mediacentre.model.filtres.CategorieFiltres;
@@ -37,6 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.*;
 
 @Service
 public class FiltrageServiceImpl implements IFiltrageService {
@@ -263,7 +256,7 @@ public class FiltrageServiceImpl implements IFiltrageService {
 			return false;
 		}
 
-		Set<String> valeurs = Sets.newHashSet();
+		Set<String> valeurs = new HashSet<>();
 		valeurs.addAll(ressource.getValeursAttribut(filtre.getNomAttribut()));
 		if (valeurs.isEmpty()) {
 			valeurs.add(filtre.getDefaultEmptyValue());

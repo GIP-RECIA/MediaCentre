@@ -15,7 +15,6 @@
  */
 package org.esco.portlet.mediacentre.service.impl;
 
-import com.google.common.collect.Lists;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
@@ -34,6 +33,7 @@ import org.springframework.stereotype.Service;
 import javax.portlet.ReadOnlyException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -127,7 +127,7 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
         if (!attributeKey.isEmpty()) {
             return userResource.getUserInfo(request,attributeKey);
         }
-        return Lists.newArrayList();
+        return new ArrayList<>();
     }
 
     @Override
@@ -199,7 +199,7 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
         }
 
         if (urlRessources == null || urlRessources.trim().isEmpty() ) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
 
         // case of url is relative

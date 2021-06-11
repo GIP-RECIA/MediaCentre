@@ -15,7 +15,6 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
-import com.google.common.collect.Lists;
 import org.esco.portlet.mediacentre.dao.IMediaCentreResource;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
 import org.slf4j.Logger;
@@ -28,6 +27,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -58,17 +58,17 @@ public class MediaCentreResourceJacksonImpl implements IMediaCentreResource {
             HttpEntity<Map<String, List<String>>> requestEntity = new HttpEntity<Map<String, List<String>>>(userInfos, requestHeaders);
             ResponseEntity<Ressource[]> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Ressource[].class);
 
-            listRessourceMediaCentre = Lists.newArrayList(response.getBody());
+            listRessourceMediaCentre = Arrays.asList(response.getBody());
 //        } catch (HttpClientErrorException e) {
 //            // providing the error stacktrace only on debug as the custom logged error should be suffisant.
 //            log.warn("Error client request on URL {}, returned status {}, with response {}", url, e.getStatusCode(), e.getResponseBodyAsString(),e);
 //            return Lists.newArrayList();
         } catch (RestClientException ex) {
             log.warn("Error getting MediaCentre from url '{}'", url, ex.getLocalizedMessage(), ex);
-            return Lists.newArrayList();
+            return new ArrayList<>();
         } catch (HttpMessageNotReadableException ex) {
             log.warn("Error getting MediaCentre from url '{}' the object doesn't map MediaCentre Object properties with a such response {}", url, ex.getLocalizedMessage(), ex);
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
 
         return listRessourceMediaCentre;
