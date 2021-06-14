@@ -124,6 +124,13 @@
 			</dependency>
 			<!-- == §§ == -->
 
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>javax.portlet</groupId>
 				<artifactId>portlet-api</artifactId>
@@ -319,6 +326,12 @@
 			<version>${soffit.version}</version>
 		</dependency>
 		<!-- == §§ == -->
+
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
