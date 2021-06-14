@@ -15,6 +15,9 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
+import org.apache.commons.lang.NotImplementedException;
+import org.apereo.portal.soffit.model.v1_0.Bearer;
+import org.apereo.portal.soffit.service.BearerService;
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +47,9 @@ public class PreferenceResourceImpl implements IPreferenceResource {
 
     @Override
     public List<String> getUserFavorites(@NotNull final HttpServletRequest request) {
+        throw new NotImplementedException("User favorites not yet implemented");
+
+        /*
         final List<String> favorites = Arrays.asList(request.getPreferences().getValues(FAVORITES_PREF, new String[0]));
 
         if (log.isDebugEnabled()) {
@@ -51,10 +57,15 @@ public class PreferenceResourceImpl implements IPreferenceResource {
         }
 
         return favorites;
+
+         */
     }
 
     @Override
     public void setUserFavorites(@NotNull final HttpServletRequest request, @NotNull final List<String> favorites) throws ReadOnlyException {
+        throw new NotImplementedException("User favorites not yet implemented");
+
+        /*
         PortletPreferences pp = request.getPreferences();
 
         if (favorites.isEmpty()) {
@@ -71,10 +82,15 @@ public class PreferenceResourceImpl implements IPreferenceResource {
         } catch (ValidatorException | IOException e) {
             log.error("PortletPreferences {} were not store", favorites, e.getMessage());
         }
+
+         */
     }
 
     @Override
-    public void addToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException  {
+    public void addToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException {
+        throw new NotImplementedException("User favorites not yet implemented");
+
+        /*
         PortletPreferences pp = request.getPreferences();
 
         if (!favorite.isEmpty()) {
@@ -92,10 +108,15 @@ public class PreferenceResourceImpl implements IPreferenceResource {
                 log.error("PortletPreferences {} were not store {}", favorites, e.getMessage());
             }
         }
+
+         */
     }
 
     @Override
     public void removeToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException  {
+        throw new NotImplementedException("User favorites not yet implemented");
+
+        /*
         PortletPreferences pp = request.getPreferences();
 
         List<String> favorites = new ArrayList<String>(Arrays.asList(pp.getValues(FAVORITES_PREF, new String[0])));
@@ -115,5 +136,7 @@ public class PreferenceResourceImpl implements IPreferenceResource {
         } catch (ValidatorException | IOException e) {
             log.error("PortletPreferences {} were not store", favorites, e.getMessage());
         }
+
+         */
     }
 }
