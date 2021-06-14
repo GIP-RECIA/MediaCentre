@@ -54,7 +54,7 @@ public class MediaCentreResourceJacksonImpl implements IMediaCentreResource {
 
         try {
             HttpHeaders requestHeaders = new HttpHeaders();
-            requestHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+            requestHeaders.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<Map<String, List<String>>> requestEntity = new HttpEntity<Map<String, List<String>>>(userInfos, requestHeaders);
             ResponseEntity<Ressource[]> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Ressource[].class);
 
