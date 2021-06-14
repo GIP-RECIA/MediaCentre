@@ -1,9 +1,9 @@
 package org.esco.portlet.mediacentre.web.rest;
 
-import org.esco.portlet.mediacentre.model.apiresponse.ApiError;
-import org.esco.portlet.mediacentre.model.apiresponse.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.esco.portlet.mediacentre.model.affectation.GestionAffectation;
+import org.esco.portlet.mediacentre.model.apiresponse.ApiError;
+import org.esco.portlet.mediacentre.model.apiresponse.ApiResponse;
 import org.esco.portlet.mediacentre.model.filtres.CategorieFiltres;
 import org.esco.portlet.mediacentre.model.ressource.IdEtablissement;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
@@ -12,9 +12,11 @@ import org.esco.portlet.mediacentre.service.IMediaCentreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.annotation.Resource;
@@ -68,8 +70,8 @@ public class ApiMediacentreController {
             String redirectUrl = null;
             for (Ressource rs : listeRessources) {
                 // On cherche à associer la ressource qui correspond à l'établissement courant
-                if (rs.getNomRessource().equalsIgnoreCase(redirectParam) && !StringUtils.isEmpty(etablissementCourant)
-                        && !StringUtils.isEmpty(rs.getIdEtablissement())) {
+                if (rs.getNomRessource().equalsIgnoreCase(redirectParam) && etablissementCourant != null && !etablissementCourant.isEmpty()
+                        && !rs.getIdEtablissement().isEmpty()) {
                     for (IdEtablissement etab : rs.getIdEtablissement()) {
                         if (etablissementCourant.equals(etab.getId())) {
                             redirectUrl = rs.getUrlAccesRessource();
@@ -77,7 +79,7 @@ public class ApiMediacentreController {
                         }
                     }
                     if (redirectUrl != null) break;
-                } else if (rs.getNomRessource().equalsIgnoreCase(redirectParam) && StringUtils.isEmpty(rs.getIdEtablissement())) {
+                } else if (rs.getNomRessource().equalsIgnoreCase(redirectParam) && rs.getIdEtablissement().isEmpty()) {
                     // quand la ressource est globale sans établissement associé
                     log.warn("Redirect to resource without organization associated {}", rs);
                     redirectUrl = rs.getUrlAccesRessource();

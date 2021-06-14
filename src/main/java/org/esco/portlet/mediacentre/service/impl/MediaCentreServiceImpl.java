@@ -18,7 +18,6 @@ package org.esco.portlet.mediacentre.service.impl;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-import org.apache.commons.lang.StringUtils;
 import org.esco.portlet.mediacentre.dao.IMediaCentreResource;
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
 import org.esco.portlet.mediacentre.dao.IUserResource;
@@ -220,7 +219,7 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
         for(Ressource ressource : listRessources) {
         	ressource.setIdInterne(id++);
         	String idRessource = ressource.getIdRessource();
-        	if(StringUtils.isNotBlank(idRessource)){
+        	if(!idRessource.isBlank()){
         		if(listeFavoris.contains(idRessource)){
         			ressource.setFavorite(true);
         		}

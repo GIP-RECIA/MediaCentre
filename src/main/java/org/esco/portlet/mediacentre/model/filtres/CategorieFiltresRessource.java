@@ -15,21 +15,15 @@
  */
 package org.esco.portlet.mediacentre.model.filtres;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.apache.commons.lang.StringUtils;
 import org.esco.portlet.mediacentre.model.ressource.ListeRessource;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
+
+import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * @author elecaude
@@ -63,7 +57,7 @@ public class CategorieFiltresRessource extends CategorieFiltresCalcules {
 
     	List<Filtre> filtres = new ArrayList<Filtre>();
     	
-		if (StringUtils.isNotBlank(getLibelleTous())) {
+		if (!getLibelleTous().isBlank()) {
 			Filtre filtre = new Filtre();
 			filtre.setId(getId());
 			filtre.setLibelle(getLibelleTous());

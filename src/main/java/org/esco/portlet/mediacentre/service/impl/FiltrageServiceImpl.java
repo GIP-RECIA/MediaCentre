@@ -27,7 +27,6 @@ import org.esco.portlet.mediacentre.service.IFiltrageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -225,7 +224,7 @@ public class FiltrageServiceImpl implements IFiltrageService {
 		if (userInfoMap == null) {
 			return false;
 		}
-		if (StringUtils.isEmpty(filter.getPopulation()) || StringUtils.isEmpty(regexp)) {
+		if (filter.getPopulation().isEmpty() || regexp.isEmpty()) {
 			return true;
 		}
 
@@ -251,7 +250,7 @@ public class FiltrageServiceImpl implements IFiltrageService {
 	 * @throws Exception Exception
 	 */
 	private boolean ressourcePasseFiltre(final Filtre filtre, final Ressource ressource) throws Exception {
-		if (StringUtils.isEmpty(filtre.getRegexpAttribut())) {
+		if (filtre.getRegexpAttribut().isEmpty()) {
 			log.warn("L'expression regulière du filtre \"" + filtre.getId() + "\" n'est pas renseignée pour l'attribut");
 			return false;
 		}
