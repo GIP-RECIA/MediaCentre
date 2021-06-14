@@ -15,22 +15,8 @@
  */
 package org.esco.portlet.mediacentre;
 
-import static org.mockito.Mockito.when;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.portlet.PortletRequest;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import lombok.NonNull;
 import lombok.Setter;
@@ -45,24 +31,32 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.client.match.MockRestRequestMatchers;
 import org.springframework.test.web.client.response.MockRestResponseCreators;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
+import javax.portlet.PortletRequest;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import static org.mockito.Mockito.when;
 
 /**
  * Created by jgribonvald on 14/09/16.
@@ -107,7 +101,7 @@ public class MediaCentreFiltreTest {
 	private MockRestServiceServer mockServer;
 
 	@Mock
-	PortletRequest request;
+	HttpServletRequest request;
 
 	@Before
 	public void init() {
@@ -127,8 +121,8 @@ public class MediaCentreFiltreTest {
 		String ressourceContent = null;
 		try {
 			ressourceContent = Files.asCharSource(rs.getFile(), Charset.forName("UTF-8")).read();
-			Assert.assertTrue("file in classPath 'gar_ressourcesDiffusables_response.xml' doesn't exist!", ressourceContent != null);
-			Assert.assertTrue("file in classPath 'gar_ressourcesDiffusables_response.xml' is Empty!", !ressourceContent.isEmpty());
+			Assert.assertNotNull("file in classPath 'gar_ressourcesDiffusables_response.xml' doesn't exist!", ressourceContent);
+			Assert.assertFalse("file in classPath 'gar_ressourcesDiffusables_response.xml' is Empty!", ressourceContent.isEmpty());
 			log.debug("File content is : {}", Files.asCharSource(rs.getFile(), Charset.forName("UTF-8")).read());
 
 			TypeReference<Ressource[]> typeRef = new TypeReference<Ressource[]>(){};
