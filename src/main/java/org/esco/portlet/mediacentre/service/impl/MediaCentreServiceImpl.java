@@ -31,7 +31,6 @@ import org.springframework.stereotype.Service;
 
 import javax.portlet.ReadOnlyException;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -91,12 +90,12 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     private IMediaCentreResource mediaCentreResource;    
     
     @Override
-    public List<String> getUserLinkedEtablissements(@NotNull HttpServletRequest request) {
+    public List<String> getUserLinkedEtablissements(@NonNull HttpServletRequest request) {
         return userResource.getUserInfo(request, etabCodesInfoKey);
     }
 
     @Override
-    public List<String> getUserCurrentEtablissement(@NotNull HttpServletRequest request) {
+    public List<String> getUserCurrentEtablissement(@NonNull HttpServletRequest request) {
         List<String> userInfos = userResource.getUserInfo(request, currentEtabCodeInfoKey);
         /**if (userInfos.size() > 1) {
             // should not happen
@@ -107,22 +106,22 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     }
 
     @Override
-    public List<String> getUserGroups(@NotNull HttpServletRequest request) {
+    public List<String> getUserGroups(@NonNull HttpServletRequest request) {
         return userResource.getUserInfo(request, userGroupsInfokey);
     }
 
     @Override
-    public String getCurrentUserId(@NotNull HttpServletRequest request) {
+    public String getCurrentUserId(@NonNull HttpServletRequest request) {
         return request.getRemoteUser();
     }
 
     @Override
-    public List<String> getUserFavorites(@NotNull HttpServletRequest request) {
+    public List<String> getUserFavorites(@NonNull HttpServletRequest request) {
         return preferenceResource.getUserFavorites(request);
     }
 
     @Override
-    public List<String> getUserInfoOnAttribute(@NotNull HttpServletRequest request, @NotNull String attributeKey) {
+    public List<String> getUserInfoOnAttribute(@NonNull HttpServletRequest request, @NonNull String attributeKey) {
         if (!attributeKey.isEmpty()) {
             return userResource.getUserInfo(request,attributeKey);
         }
@@ -130,12 +129,12 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     }
 
     @Override
-    public Map<String, List<String>> getUserInfos(@NotNull HttpServletRequest request) {
+    public Map<String, List<String>> getUserInfos(@NonNull HttpServletRequest request) {
         return userResource.getUserInfoMap(request);
     }
 
     @Override
-    public void setAndSaveUserFavorites(@NotNull HttpServletRequest request, @NotNull List<String> favorites) {
+    public void setAndSaveUserFavorites(@NonNull HttpServletRequest request, @NonNull List<String> favorites) {
         try {
             preferenceResource.setUserFavorites(request,favorites);
         } catch (ReadOnlyException e) {
@@ -144,7 +143,7 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     }
 
     @Override
-    public void addToUserFavorites(@NotNull HttpServletRequest request, @NotNull String favorite) {
+    public void addToUserFavorites(@NonNull HttpServletRequest request, @NonNull String favorite) {
         try {
             if (!favorite.isEmpty()) {
                 preferenceResource.addToUserFavorites(request, favorite);
@@ -157,7 +156,7 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
     }
 
     @Override
-    public void removeToUserFavorites(@NotNull HttpServletRequest request, @NotNull String favorite) {
+    public void removeToUserFavorites(@NonNull HttpServletRequest request, @NonNull String favorite) {
         try {
             if (!favorite.isEmpty()) {
                 preferenceResource.removeToUserFavorites(request, favorite);
@@ -216,14 +215,13 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
         
         // on alimente l'attribut des favoris
         int id=1;
-        for(Ressource ressource : listRessources) {
+        for (Ressource ressource : listRessources) {
         	ressource.setIdInterne(id++);
         	String idRessource = ressource.getIdRessource();
-        	if(!idRessource.isBlank()){
-        		if(listeFavoris.contains(idRessource)){
+        	if (!idRessource.isBlank()) {
+        		if (listeFavoris.contains(idRessource)) {
         			ressource.setFavorite(true);
-        		}
-        		else{
+        		} else {
         			ressource.setFavorite(false);
         		}
         	}

@@ -15,40 +15,39 @@
  */
 package org.esco.portlet.mediacentre.service;
 
-import java.util.List;
-import java.util.Map;
+import lombok.NonNull;
+import org.esco.portlet.mediacentre.model.ressource.Ressource;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
-
-import org.esco.portlet.mediacentre.model.ressource.Ressource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jgribonvald on 06/06/17.
  */
 public interface IMediaCentreService {
 
-	List<String> getUserLinkedEtablissements(@NotNull final HttpServletRequest request);
+	List<String> getUserLinkedEtablissements(@NonNull final HttpServletRequest request);
 
-	List<String> getUserCurrentEtablissement(@NotNull final HttpServletRequest request);
+	List<String> getUserCurrentEtablissement(@NonNull final HttpServletRequest request);
 
-    List<String> getUserGroups(@NotNull final HttpServletRequest request);
+    List<String> getUserGroups(@NonNull final HttpServletRequest request);
 
-    String getCurrentUserId (@NotNull final HttpServletRequest request);
+    String getCurrentUserId (@NonNull final HttpServletRequest request);
 
-    List<String> getUserFavorites(@NotNull final HttpServletRequest request);
+    List<String> getUserFavorites(@NonNull final HttpServletRequest request);
 
     /* Best method call to obtain a user attribute value. */
-    List<String> getUserInfoOnAttribute(@NotNull final HttpServletRequest request, @NotNull final String attributeKey);
+    List<String> getUserInfoOnAttribute(@NonNull final HttpServletRequest request, @NonNull final String attributeKey);
 
     /* Should be used to share user info. */
-    Map<String, List<String>> getUserInfos(@NotNull final HttpServletRequest request);
+    Map<String, List<String>> getUserInfos(@NonNull final HttpServletRequest request);
 
-    void setAndSaveUserFavorites(@NotNull final HttpServletRequest request, @NotNull final List<String> favorites);
+    void setAndSaveUserFavorites(@NonNull final HttpServletRequest request, @NonNull final List<String> favorites);
 
-    void addToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite);
+    void addToUserFavorites(@NonNull final HttpServletRequest request, @NonNull final String favorite);
 
-    void removeToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite);
+    void removeToUserFavorites(@NonNull final HttpServletRequest request, @NonNull final String favorite);
 
     List<Ressource> retrieveListRessource(final HttpServletRequest request);
 }

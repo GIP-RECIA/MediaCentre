@@ -19,7 +19,6 @@ import lombok.*;
 import org.esco.portlet.mediacentre.model.ressource.IdEtablissement;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
 
-import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /**
@@ -31,8 +30,6 @@ import java.util.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class CategorieFiltresEtablissement extends CategorieFiltresCalcules {
-
-	@NotNull
 	@NonNull
 	private String attributUtilisateurDefaut;
 
