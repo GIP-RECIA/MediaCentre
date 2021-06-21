@@ -15,9 +15,9 @@
  */
 package org.esco.portlet.mediacentre.dao;
 
-import javax.portlet.ReadOnlyException;
+import lombok.NonNull;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -25,12 +25,12 @@ import java.util.List;
  */
 public interface IPreferenceResource {
 
-    List<String> getUserFavorites(@NotNull final HttpServletRequest request);
+    List<String> getUserFavorites(@NonNull final HttpServletRequest request);
 
-    void setUserFavorites(@NotNull final HttpServletRequest request, @NotNull final List<String> favorites) throws ReadOnlyException;
+    void setUserFavorites(@NonNull final HttpServletRequest request, @NonNull final List<String> favorites);
 
-    void addToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException;
+    void addToUserFavorites(@NonNull final HttpServletRequest request, @NonNull final String favorite);
 
-    void removeToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException ;
+    void removeToUserFavorites(@NonNull final HttpServletRequest request, @NonNull final String favorite);
 
 }

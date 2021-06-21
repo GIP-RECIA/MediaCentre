@@ -15,23 +15,15 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
-import org.apache.commons.lang.NotImplementedException;
-import org.apereo.portal.soffit.model.v1_0.Bearer;
-import org.apereo.portal.soffit.service.BearerService;
+import lombok.NonNull;
+import org.apache.commons.lang3.NotImplementedException;
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import javax.portlet.PortletPreferences;
-import javax.portlet.ReadOnlyException;
-import javax.portlet.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,7 +38,7 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public List<String> getUserFavorites(@NotNull final HttpServletRequest request) {
+    public List<String> getUserFavorites(@NonNull final HttpServletRequest request) {
         throw new NotImplementedException("User favorites not yet implemented");
 
         /*
@@ -62,7 +54,7 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     }
 
     @Override
-    public void setUserFavorites(@NotNull final HttpServletRequest request, @NotNull final List<String> favorites) throws ReadOnlyException {
+    public void setUserFavorites(@NonNull final HttpServletRequest request, @NonNull final List<String> favorites) {
         throw new NotImplementedException("User favorites not yet implemented");
 
         /*
@@ -87,7 +79,7 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     }
 
     @Override
-    public void addToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException {
+    public void addToUserFavorites(@NonNull final HttpServletRequest request, @NonNull final String favorite) {
         throw new NotImplementedException("User favorites not yet implemented");
 
         /*
@@ -113,7 +105,7 @@ public class PreferenceResourceImpl implements IPreferenceResource {
     }
 
     @Override
-    public void removeToUserFavorites(@NotNull final HttpServletRequest request, @NotNull final String favorite) throws ReadOnlyException  {
+    public void removeToUserFavorites(@NonNull final HttpServletRequest request, @NonNull final String favorite) {
         throw new NotImplementedException("User favorites not yet implemented");
 
         /*

@@ -15,15 +15,6 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
-
 import lombok.NonNull;
 import org.esco.portlet.mediacentre.dao.IUserResource;
 import org.slf4j.Logger;
@@ -33,6 +24,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Service
 @Profile("mock")
@@ -71,7 +65,7 @@ public class MockUserResourceImpl implements IUserResource, InitializingBean {
      * @return the user info attribute values
      */
     @SuppressWarnings("unchecked")
-    public List<String> getUserInfo(@NotNull final HttpServletRequest request, @NotNull final String attributeName) {
+    public List<String> getUserInfo(@NonNull final HttpServletRequest request, @NonNull final String attributeName) {
         if (attributeName.isEmpty()) return Collections.EMPTY_LIST;
 
         final Map<String, List<String>> userInfo = userInfoMap;

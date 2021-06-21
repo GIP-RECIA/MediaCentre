@@ -15,6 +15,7 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
+import lombok.NonNull;
 import org.esco.portlet.mediacentre.dao.IUserResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -44,7 +44,7 @@ public class UserResourceImpl implements IUserResource{
      * @return the user info attribute values
      */
     @SuppressWarnings("unchecked")
-    public List<String> getUserInfo(@NotNull final HttpServletRequest request, @NotNull final String attributeName) {
+    public List<String> getUserInfo(@NonNull final HttpServletRequest request, @NonNull final String attributeName) {
     	log.debug("getUserInfo attributeName={}", attributeName);
     	
         if (attributeName.isEmpty()) return Collections.EMPTY_LIST;
@@ -78,7 +78,7 @@ public class UserResourceImpl implements IUserResource{
      * @return  the user info map with association attribute values
      */
     @SuppressWarnings("unchecked")
-    public Map<String, List<String>> getUserInfoMap(@NotNull final HttpServletRequest request) {
+    public Map<String, List<String>> getUserInfoMap(@NonNull final HttpServletRequest request) {
 
         Map<String, List<String>> userInfo = (Map<String, List<String>>) request.getAttribute("org.jasig.portlet.USER_INFO_MULTIVALUED");
         log.debug("getUserInfoMap userInfo = {}", userInfo );
