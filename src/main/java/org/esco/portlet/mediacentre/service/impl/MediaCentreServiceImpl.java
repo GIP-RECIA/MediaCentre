@@ -135,36 +135,24 @@ public class MediaCentreServiceImpl implements IMediaCentreService {
 
     @Override
     public void setAndSaveUserFavorites(@NonNull HttpServletRequest request, @NonNull List<String> favorites) {
-        try {
-            preferenceResource.setUserFavorites(request,favorites);
-        } catch (ReadOnlyException e) {
-            log.error("Can't modify Favorites, please watch the portlet definition");
-        }
+        preferenceResource.setUserFavorites(request,favorites);
     }
 
     @Override
     public void addToUserFavorites(@NonNull HttpServletRequest request, @NonNull String favorite) {
-        try {
-            if (!favorite.isEmpty()) {
-                preferenceResource.addToUserFavorites(request, favorite);
-            } else {
-                log.warn("Tried to add an empty string passed as favorite !");
-            }
-        } catch (ReadOnlyException e) {
-            log.error("Can't modify Favorites, please watch the portlet definition");
+        if (!favorite.isEmpty()) {
+            preferenceResource.addToUserFavorites(request, favorite);
+        } else {
+            log.warn("Tried to add an empty string passed as favorite !");
         }
     }
 
     @Override
     public void removeToUserFavorites(@NonNull HttpServletRequest request, @NonNull String favorite) {
-        try {
-            if (!favorite.isEmpty()) {
-                preferenceResource.removeToUserFavorites(request, favorite);
-            } else {
-                log.warn("Tried to remove an empty string passed as favorite !");
-            }
-        } catch (ReadOnlyException e) {
-            log.error("Can't modify Favorites, please watch the portlet definition");
+        if (!favorite.isEmpty()) {
+            preferenceResource.removeToUserFavorites(request, favorite);
+        } else {
+            log.warn("Tried to remove an empty string passed as favorite !");
         }
     }
     
