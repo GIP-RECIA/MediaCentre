@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource(locations = {"classpath:WEB-INF/*.xml"})
+@ImportResource(locations = {
+        "classpath:context/*.xml"
+})
 public class ApiMediacentreApplication {
     public static void main(String[] args) {
         SpringApplication.run(ApiMediacentreApplication.class, args);
