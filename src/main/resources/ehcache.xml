@@ -21,14 +21,21 @@
 
   <diskStore path="java.io.tmpdir" />
 
-  <defaultCache eternal="false" maxElementsInMemory="1000" overflowToDisk="false" overflowToOffHeap="false" diskPersistent="false"/>
+  <defaultCache
+          eternal="false"
+          maxElementsInMemory="1000"
+          overflowToDisk="false"
+          overflowToOffHeap="false"
+          diskPersistent="false"
+  />
 
-  <cache name="listeRessourcesMedia"
-         eternal="false"
-         maxEntriesLocalHeap="1000"
-         diskPersistent="false"
-         timeToIdleSeconds="3600"
-         timeToLiveSeconds="14400"
-         memoryStoreEvictionPolicy="LFU">
-  </cache>
+  <cache
+          name="listeRessourcesMedia"
+          eternal="false"
+          maxEntriesLocalHeap="1000"
+          diskPersistent="false"
+          timeToIdleSeconds="3600"
+          timeToLiveSeconds="14400"
+          memoryStoreEvictionPolicy="LFU"
+  />
 </ehcache>
