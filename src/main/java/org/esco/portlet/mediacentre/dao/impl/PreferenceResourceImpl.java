@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class PreferenceResourceImpl implements IPreferenceResource {
 
     @Override
     public List<String> getUserFavorites(@NonNull final HttpServletRequest request) {
-        throw new NotImplementedException("User favorites not yet implemented");
+        return new ArrayList<>();
 
         /*
         final List<String> favorites = Arrays.asList(request.getPreferences().getValues(FAVORITES_PREF, new String[0]));
