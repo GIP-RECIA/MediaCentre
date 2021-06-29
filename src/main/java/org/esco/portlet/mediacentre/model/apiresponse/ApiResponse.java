@@ -1,18 +1,14 @@
 package org.esco.portlet.mediacentre.model.apiresponse;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.tomcat.jni.Time;
-
 public class ApiResponse {
     // Attributs
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private final long timestamp;
     private String message;
     private Object payload;
 
     // Constructeurs
     private ApiResponse() {
-        this.timestamp = Time.now();
+        this.timestamp = System.currentTimeMillis();
     }
 
     public ApiResponse(String message, Object payload) {
