@@ -110,7 +110,7 @@ public class ApiMediacentreController {
                         "Mediacentre ressources request successfully processed.",
                         payload
                 ),
-                HttpStatus.BAD_REQUEST // 400
+                HttpStatus.OK // 200
         );
     }
 
