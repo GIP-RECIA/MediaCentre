@@ -64,10 +64,10 @@ public class MediaCentreResourceJacksonImpl implements IMediaCentreResource {
 //            log.warn("Error client request on URL {}, returned status {}, with response {}", url, e.getStatusCode(), e.getResponseBodyAsString(),e);
 //            return Lists.newArrayList();
         } catch (RestClientException ex) {
-            log.warn("Error getting MediaCentre from url '{}'", url, ex.getLocalizedMessage(), ex);
+            log.warn("Error getting MediaCentre from url '{}' {}; returning empty list", url, ex.getLocalizedMessage()/*, ex */);
             return new ArrayList<>();
         } catch (HttpMessageNotReadableException ex) {
-            log.warn("Error getting MediaCentre from url '{}' the object doesn't map MediaCentre Object properties with a such response {}", url, ex.getLocalizedMessage(), ex);
+            log.warn("Error getting MediaCentre from url '{}' the object doesn't map MediaCentre Object properties with a such response {}; returning empty list", url, ex.getLocalizedMessage()/*, ex */);
             return new ArrayList<>();
         }
 
