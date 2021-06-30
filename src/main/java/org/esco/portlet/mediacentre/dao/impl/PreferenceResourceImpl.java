@@ -33,6 +33,7 @@ import java.util.List;
 @Service
 @Profile("!mock")
 public class PreferenceResourceImpl implements IPreferenceResource {
+    // TODO: RÉIMPLÉMENTER CETTE CLASSE EN UTILISANT LES INFORMATIONS DANS LE BEARER
     private static final String FAVORITES_PREF = "mediacentreFavorites";
 
     @Override
