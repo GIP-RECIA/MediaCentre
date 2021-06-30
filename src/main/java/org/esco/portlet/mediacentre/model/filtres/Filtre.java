@@ -18,14 +18,14 @@ package org.esco.portlet.mediacentre.model.filtres;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.esco.portlet.mediacentre.model.IFilterUserRight;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author elecaude
  *
  */
+@Slf4j
 @Data
 @NoArgsConstructor
 public class Filtre implements IFilterUserRight, Cloneable{
@@ -50,8 +50,6 @@ public class Filtre implements IFilterUserRight, Cloneable{
 	private boolean caseSelectAll = false;
 
 	private boolean addEmptyFilteredValues = false;
-	
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#clone()

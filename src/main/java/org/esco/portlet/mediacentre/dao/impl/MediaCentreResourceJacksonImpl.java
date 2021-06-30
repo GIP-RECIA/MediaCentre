@@ -15,10 +15,9 @@
  */
 package org.esco.portlet.mediacentre.dao.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.esco.portlet.mediacentre.dao.IMediaCentreResource;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -34,10 +33,8 @@ import java.util.Map;
 /**
  * Created by jgribonvald on 13/09/16.
  */
+@Slf4j
 public class MediaCentreResourceJacksonImpl implements IMediaCentreResource {
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private RestTemplate restTemplate;
 

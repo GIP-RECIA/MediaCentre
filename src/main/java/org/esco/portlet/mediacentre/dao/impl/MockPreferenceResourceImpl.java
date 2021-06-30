@@ -16,9 +16,8 @@
 package org.esco.portlet.mediacentre.dao.impl;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -31,12 +30,10 @@ import java.util.List;
 /**
  * Created by jgribonvald on 06/06/17.
  */
+@Slf4j
 @Service
 @Profile("mock")
 public class MockPreferenceResourceImpl implements IPreferenceResource {
-	
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
 	private List<String> favoris = new ArrayList<String>(); 
 	
 	@NonNull

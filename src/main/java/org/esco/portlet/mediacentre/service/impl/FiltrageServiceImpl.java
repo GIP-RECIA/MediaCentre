@@ -16,6 +16,7 @@
 package org.esco.portlet.mediacentre.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.esco.portlet.mediacentre.model.IFilterUserRight;
 import org.esco.portlet.mediacentre.model.affectation.GestionAffectation;
 import org.esco.portlet.mediacentre.model.filtres.CategorieFiltres;
@@ -24,17 +25,13 @@ import org.esco.portlet.mediacentre.model.filtres.Filtre;
 import org.esco.portlet.mediacentre.model.filtres.FiltreFavoris;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
 import org.esco.portlet.mediacentre.service.IFiltrageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Slf4j
 @Service
 public class FiltrageServiceImpl implements IFiltrageService {
-
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
 	/* (non-Javadoc)
 	 * @see org.esco.portlet.mediacentre.service.IFiltrageService#preparerFiltrage(java.util.Map, java.util.List, java.util.List, java.util.List, java.util.List)
 	 */

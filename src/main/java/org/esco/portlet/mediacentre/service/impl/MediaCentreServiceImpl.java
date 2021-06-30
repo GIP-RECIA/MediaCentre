@@ -18,13 +18,12 @@ package org.esco.portlet.mediacentre.service.impl;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.esco.portlet.mediacentre.dao.IMediaCentreResource;
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
 import org.esco.portlet.mediacentre.dao.IUserResource;
 import org.esco.portlet.mediacentre.model.ressource.Ressource;
 import org.esco.portlet.mediacentre.service.IMediaCentreService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -37,12 +36,10 @@ import java.util.Map;
 /**
  * Created by jgribonvald on 06/06/17.
  */
+@Slf4j
 @Service
 @NoArgsConstructor
 public class MediaCentreServiceImpl implements IMediaCentreService {
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     private static final String PREF_MEDIA_URL = "mediaUrl";
     
     @NonNull

@@ -16,10 +16,9 @@
 package org.esco.portlet.mediacentre.dao.impl;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.NotImplementedException;
 import org.esco.portlet.mediacentre.dao.IPreferenceResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +29,11 @@ import java.util.List;
 /**
  * Created by jgribonvald on 06/06/17.
  */
+@Slf4j
 @Service
 @Profile("!mock")
 public class PreferenceResourceImpl implements IPreferenceResource {
-
     private static final String FAVORITES_PREF = "mediacentreFavorites";
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public List<String> getUserFavorites(@NonNull final HttpServletRequest request) {

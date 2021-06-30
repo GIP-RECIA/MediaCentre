@@ -15,9 +15,8 @@
  */
 package org.esco.portlet.mediacentre.dao.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
@@ -28,10 +27,8 @@ import java.util.Set;
 /**
  * Created by jgribonvald on 27/09/16.
  */
+@Slf4j
 public class EscoHostnameVerifier implements HostnameVerifier, InitializingBean {
-
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-
     private HostnameVerifier defaultHostnameVerifier;
 
     private Set<String> trustedDomains;

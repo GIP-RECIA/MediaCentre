@@ -16,9 +16,8 @@
 package org.esco.portlet.mediacentre.dao.impl;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.esco.portlet.mediacentre.dao.IUserResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
@@ -28,12 +27,12 @@ import org.springframework.util.Assert;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
+@Slf4j
 @Service
 @Profile("mock")
 public class MockUserResourceImpl implements IUserResource, InitializingBean {
 
     private static final String SPLIT_SEP = ",";
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @NonNull
     @Value("${userInfo.key.uid}")

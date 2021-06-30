@@ -140,6 +140,7 @@ public class ApiMediacentreController {
             HttpServletResponse response,
             Exception exception
     ) {
+        if (log.isWarnEnabled()) log.warn("Unknown or generic error in controller, responding with HTTP 500 INTERNAL SERVER ERROR: {}", exception.getLocalizedMessage(), exception);
         return new ResponseEntity<>(
                 new ApiResponse(
                         "Api request failed: unknown internal server error.",
