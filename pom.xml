@@ -50,7 +50,7 @@
 		<mockito.version>3.12.4</mockito.version>
 		<hamcrest.version>1.10.19</hamcrest.version>
 		<ehcache.version>2.10.9.2</ehcache.version>
-		<jersey.version>2.33</jersey.version>
+		<jersey.version>3.1.7</jersey.version>
 		<uportal-libs.version>[5.4.0,6.0)</uportal-libs.version>
 		<guava.version>31.1-jre</guava.version>
 
