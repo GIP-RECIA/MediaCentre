@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Copyright © 2017 GIP-RECIA (https://www.recia.fr/)
@@ -16,19 +15,34 @@
     limitations under the License.
 
 -->
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd"
-         updateCheck="true" monitoring="autodetect" dynamicConfig="true">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.ehcache.org/v3"
+        xsi:schemaLocation="
+            http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
 
-  <diskStore path="java.io.tmpdir" />
+    <cache alias="userResourcesCache">
+        <key-type>java.lang.String</key-type>
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="seconds">300</ttl>
+        </expiry>
+        <listeners>
+            <listener>
+                <class>fr.recia.mediacentre.api.configuration.cache.CacheEventLogger</class>
+                <event-firing-mode>ASYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>UNORDERED</event-ordering-mode>
+                <events-to-fire-on>CREATED</events-to-fire-on>
+                <events-to-fire-on>UPDATED</events-to-fire-on>
+                <events-to-fire-on>EXPIRED</events-to-fire-on>
+                <events-to-fire-on>REMOVED</events-to-fire-on>
+                <events-to-fire-on>EVICTED</events-to-fire-on>
+            </listener>
+        </listeners>
+        <resources>
+            <heap unit="entries">1000</heap>
+        </resources>
+    </cache>
 
-  <defaultCache eternal="false" maxElementsInMemory="1000" overflowToDisk="false" overflowToOffHeap="false" diskPersistent="false"/>
+</config>
 
-  <cache name="listeRessourcesMedia"
-         eternal="false"
-         maxEntriesLocalHeap="1000"
-         diskPersistent="false"
-         timeToIdleSeconds="3600"
-         timeToLiveSeconds="14400"
-         memoryStoreEvictionPolicy="LFU">
-  </cache>
-</ehcache>
+
