@@ -1,0 +1,62 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /the-path
+
+  error:
+    whitelabel.enabled: true
+    include-binding-errors: always
+    include-exception: true
+    include-message: always
+    include-stacktrace: always
+
+logging:
+  config: 'classpath:logback-dev.xml'
+
+hostnames:
+  trusted:
+    - "test.reciacas.fr"
+    - "test-lycee.reciaent.fr"
+    - "test-cfa.reciaent.fr"
+    - "test.reciaclg.fr"
+
+spring:
+  config:
+    activate:
+      on-profile: 'dev'
+
+app:
+  cors:
+      enable: true
+      allow-credentials: true
+      allowed-origins:
+        - http://localhost:5173
+        - https://*.giprecia.net
+  soffit:
+    encryptionPassword: 'encryptionPassword'
+    signatureKey: 'aJwtSignatureKey'
+
+filters:
+  categoriesByProfiles:
+    - profiles:
+        - 'profile1'
+      filters:
+        - filter1
+        - filter2
+    - profiles:
+        - 'profile2'
+        - 'profile3'
+        - 'profile4'
+      filters:
+        - filter3
+        - filter4
+        - filter5
+
+config:
+  groups:
+    "groupsRegex"
+
+url:
+  ressources:
+    mediacentre:
+      "mediacentre-WS url"

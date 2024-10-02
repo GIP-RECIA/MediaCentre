@@ -1,0 +1,9 @@
+{
+  "isMemberOf" : [
+    "first:element",
+    "second:element",
+    "third:element",
+    "fourth:element",
+    "fifth:element"
+  ]
+}

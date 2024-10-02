@@ -1,0 +1,92 @@
+#
+# Copyright © 2017 GIP-RECIA (https://www.recia.fr/)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+server:
+  port: 8090
+  servlet:
+    context-path: /manon
+
+  error:
+    whitelabel.enabled: true
+    include-binding-errors: always
+    include-exception: true
+    include-message: always
+    include-stacktrace: always
+
+hostnames:
+  trusted:
+    - "test.reciacas.fr"
+    - "test-lycee.reciaent.fr"
+    - "test-cfa.reciaent.fr"
+    - "test.reciaclg.fr"
+
+spring:
+  config:
+    activate:
+      on-profile: 'test'
+
+  cache:
+    jcache:
+      config:
+        "classpath:ehcache.xml"
+
+app:
+  cors:
+    enable: true
+    allow-credentials: true
+    allowed-origins:
+      #        port def de vite
+      - http://localhost:5173
+      - https://*.giprecia.net
+
+  soffit:
+    encryptionPassword: 'encryptionPassword'
+    signatureKey: 'signatureKey'
+filters:
+  categoriesByProfiles:
+    - profiles:
+        - 'profile4'
+      filters:
+        - TYPE_PRESENTATION_FILTER
+        - DOMAINE_ENSEIGNEMENT_FILTER
+    - profiles:
+        - 'profile1'
+        - 'profile2'
+        - 'profile3'
+      filters:
+        - TYPE_PRESENTATION_FILTER
+        - NIVEAU_EDUCATIF_FILTER
+        - UAI_FILTER
+
+url:
+  ressources:
+    mediacentre:
+      "http://my-url:0000/"
+
+path:
+  resources:
+    src/test/resources/json/resources-test.json
+  isMemberOf:
+    src/test/resources/json/isMemberOf-test.json
+  filters:
+    src/test/resources/json/filters-test.json
+
+config:
+  groups:
+    - "^.*:(regex1):.*$"
+    - "^.*:(regex2):.*$"
+    - "^.*:(regex3):.*$"
+    - "^.*:(regex4):.*$"

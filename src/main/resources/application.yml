@@ -1,0 +1,89 @@
+spring:
+  config:
+    activate:
+      on-profile: 'default-config'
+
+---
+
+server:
+  port: 8090
+  servlet:
+    context-path: /spring-api
+
+logging:
+  config: 'classpath:logback.xml'
+
+spring:
+  application:
+    name: MediaCentre
+
+  profiles:
+    active: @spring.profiles.active@
+    group:
+      prod: prod
+      dev: dev
+      test: test
+      ci: test
+
+  cache:
+    jcache:
+      config:
+        "classpath:ehcache.xml"
+
+app:
+  cors:
+    enable: true
+    allow-credentials: true
+    allowed-origins:
+
+    exposed-headers:
+      - x-auth-token
+      - x-requested-with
+      - x-xsrf-token
+    allowed-headers:
+      - content-type
+      - authorization
+      - x-com-persist
+      - X-Auth-Token
+      - x-auth-token
+      - x-requested-with
+      - x-xsrf-token
+    allowed-methods:
+      - GET
+      - PUT
+      - POST
+      - DELETE
+
+  soffit:
+    signatureKey: ''
+    encryptionPassword: ''
+
+viewResCache: false
+
+hostnames:
+  trusted:
+
+userInfo:
+  key:
+    currenEtabId:
+      ESCOSIRENCourant
+    etabIds:
+      ESCOSIREN
+    groups:
+      isMemberOf
+    uid:
+      ENTPersonGARIdentifiant
+    profils:
+      ENTPersonProfils
+
+filters:
+  categoriesByProfiles:
+
+config:
+  groups:
+
+url:
+  ressources:
+    mediacentre:
+
+
