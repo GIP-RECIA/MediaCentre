@@ -15,17 +15,6 @@
  */
 package org.esco.portlet.mediacentre.mvc.portlet;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
-
 import org.esco.portlet.mediacentre.model.affectation.GestionAffectation;
 import org.esco.portlet.mediacentre.model.filtres.CategorieFiltres;
 import org.esco.portlet.mediacentre.model.ressource.IdEtablissement;
@@ -41,6 +30,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
+
+import javax.annotation.Resource;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Main portlet view.
@@ -97,20 +97,25 @@ public class MainController {
     public ModelAndView showMainView(final RenderRequest request, final RenderResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("main");
 
-        // case to request to redirect to a ressource directly
-        final String redirectParam = request.getParameter("redirect");
-        if (redirectParam != null) {
+        // case to request to redirect to a resource directly
+        final boolean isBase64 = Boolean.parseBoolean(request.getParameter("base64"));
+        final String redirParam = request.getParameter("redirect");
+        String redirectParam = redirParam;
+        if (isBase64 && StringUtils.hasText(redirParam)) {
+            redirectParam = new String(Base64.getDecoder().decode(redirParam));
+        }
+        if (StringUtils.hasText(redirectParam)) {
             mav = new ModelAndView("redirect");
         }
         
-        if(log.isDebugEnabled()) {
+        if (log.isDebugEnabled()) {
             log.debug("Using view name " + mav.getViewName() + " for main view");
         }
         
         final Map<String, List<String>> userInfo = mediaCentreService.getUserInfos(request);
         List<Ressource> listeRessources = mediaCentreService.retrieveListRessource(request);
 
-        if (redirectParam != null) {
+        if (StringUtils.hasText(redirectParam)) {
             final List<String> etablissementsCourants = mediaCentreService.getUserCurrentEtablissement(request);
             String etablissementCourant = null;
             if (etablissementsCourants != null && !etablissementsCourants.isEmpty()) {
