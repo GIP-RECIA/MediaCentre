@@ -10,7 +10,7 @@
 	<groupId>org.esco.portlet</groupId>
 	<artifactId>mediacentre</artifactId>
 	<packaging>war</packaging>
-	<version>0.2.4</version>
+	<version>0.2.5-SNAPSHOT</version>
 	<name>mediacentre</name>
 	<inceptionYear>2017</inceptionYear>
 	<description>
@@ -21,7 +21,7 @@
 		<connection>scm:git:ssh://git@github.com/GIP-RECIA/mediacentre.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/GIP-RECIA/mediacentre.git</developerConnection>
 		<url>https://github.com/GIP-RECIA/mediacentre.git</url>
-		<tag>0.2.4</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
